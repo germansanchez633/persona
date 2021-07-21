@@ -1,0 +1,1 @@
+INSERT INTO personas(per_id, per_tipo_documento, per_numero_documento, per_apellido, per_nombre, per_fecha_nacimiento) VALUES(1, 'DNI', 35235965, 'Flores', 'Facundo', '1991-05-08'),(2, 'Pasaporte', 25487596, 'Gomez', 'Andres', '1985-04-15'),(3, 'Cedula', 28987542, 'Garetto', 'Fernando', '1987-09-28');

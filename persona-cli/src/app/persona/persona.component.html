@@ -1,0 +1,76 @@
+<div class="row justify-content-between">
+  <div class="col-1">
+    <h1>Persona</h1>
+  </div>
+  <div class="col-1">
+    <button type="button" [routerLink]="['/altaPersona/0']" class="btn btn-success m-3">Nuevo</button>
+  </div>
+</div>
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Filtros
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <form class="row g-3 m-3">
+          <div class="col-md-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="nombreFiltro" [ngModelOptions]="{standalone: true}" placeholder="Nombre...">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Tipo Documento</label>
+            <select class="form-select" [(ngModel)]="tipoDocumentoFiltro" [ngModelOptions]="{standalone: true}" aria-label="Default select example">
+              <option value="" selected>Todos</option>
+              <option *ngFor="let tipoDocumento of tipodocumentos">{{tipoDocumento}}</option>
+            </select>
+          </div>
+          
+        </form>
+        <div class="row justify-content-end">
+          <div class="col-1">
+            <button type="button" (click)="filtrar()" class="btn btn-primary">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-danger" *ngIf="personas && personas.length == 0" role="alert">
+  No se encuentran personas cargadas
+</div>
+
+<table *ngIf="personas && personas.length > 0" class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Número Documento</th>
+        <th scope="col">Tipo Documento</th>
+        <th scope="col">Fecha Nacimiento</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of personas">
+        <th scope="row">{{persona.perId}}</th>
+        <td>{{persona.perNombre}}</td>
+        <td>{{persona.perApellido}}</td>
+        <td>{{persona.perNumeroDocumento}}</td>
+        <td>{{persona.perTipoDocumento}}</td>
+        <td>{{persona.perFechaNacimiento | date:'dd/MM/yyyy'}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="editar(persona)">Editar</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="eliminar(persona)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

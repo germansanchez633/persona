@@ -1,0 +1,69 @@
+<form class="row g-3 needs-validation" (ngSubmit)="personaForm.form.valid && guardar()" #personaForm="ngForm" novalidate>
+    <div class="col-md-4">
+        <label for="validationCustom01" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="validationCustom01" placeholder="Nombre..."
+            [(ngModel)]="personaCargar.perNombre" [ngModelOptions]="{standalone: true}" class="form-control" required
+            #nombre="ngModel">
+        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <div *ngIf="nombre?.errors?.required">
+                Ingrese un Nombre
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Apellido</label>
+        <input type="text" placeholder="Apellido..." [(ngModel)]="personaCargar.perApellido"
+            [ngModelOptions]="{standalone: true}" class="form-control" required #apellido="ngModel">
+        <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+            <div *ngIf="apellido?.errors?.required">
+                Ingrese un Apellido
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Numero Documento</label>
+        <input type="number" placeholder="Numero Documento..." [(ngModel)]="personaCargar.perNumeroDocumento"
+            [ngModelOptions]="{standalone: true}" class="form-control" required #numeroDocumento="ngModel">
+        <div class="alert alert-danger"
+            *ngIf="numeroDocumento.invalid && (numeroDocumento.dirty || numeroDocumento.touched)">
+            <div *ngIf="numeroDocumento?.errors?.required">
+                Ingrese un Numero de Documento
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Tipo Documento</label>
+        <select id="inputState" [(ngModel)]="personaCargar.perTipoDocumento" [ngModelOptions]="{standalone: true}"
+            class="form-select" required #tipoDocumento="ngModel">
+            <option hidden selected>Seleccione...</option>
+            <option [value]="tipoDocumento" *ngFor="let tipoDocumento of tipodocumentos">{{tipoDocumento}}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="tipoDocumento.invalid && (tipoDocumento.dirty || tipoDocumento.touched)">
+            <div *ngIf="tipoDocumento?.errors?.required">
+                Seleccione un Tipo de Documento
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Fecha de Nacimiento</label>
+        <input class="form-control" type="date" placeholder="Fecha..."
+            [ngModel]="personaCargar.perFechaNacimiento | date:'yyyy-MM-dd'"
+            (ngModelChange)="personaCargar.perFechaNacimiento=$event" [ngModelOptions]="{standalone: true}" required
+            #fechaNacimiento="ngModel">
+        <div class="alert alert-danger"
+            *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched)">
+            <div *ngIf="fechaNacimiento?.errors?.required">
+                Ingrese una Fecha de Nacimiento
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-1">
+            <button type="button" [routerLink]="['/persona']" class="btn btn-primary m-2">Volver</button>
+        </div>
+        <div class="col-1">
+            <button role="submit" class="btn btn-success m-2" value="guardar">Guardar</button>
+        </div>
+      </div>
+</form>
