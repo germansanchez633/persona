@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.test.trimix.entity.TipoDocumento;
-
 @Service
 public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 

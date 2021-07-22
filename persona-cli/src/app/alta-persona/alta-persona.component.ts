@@ -36,9 +36,13 @@ export class AltaPersonaComponent implements OnInit {
   }
 
   guardar(): void {
-    this.personaService.cargarPersona(this.personaCargar).subscribe();
+    this.personaService.cargarPersona(this.personaCargar).subscribe(() => {
 
-    this.router.navigate(['/persona']);
+      this.router.navigate(['/persona']);
+
+    });
+
+    
   }
   
 }
